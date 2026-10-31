@@ -1,24 +1,13 @@
-#!/usr/bin/python3
-"""List all states from the database."""
+#!/usr/bin/env python3
+"""Coroutine loop 10 times, each time waiting 1 second and yielding a random number."""
 
-import MySQLdb
-import sys
+import random
+import asyncio
+import typing
 
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3]
-    )
-
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
-
-    for row in cur.fetchall():
-        print(row)
-
-    cur.close()
-    db.close()
+async def async_generator() -> typing.AsyncGenerator[float, None]:
+    """Yields 10 random numbers between 0 and 10 with a 1-second delay."""
+    for _ in range(10):
+        await asyncio.sleep(1)
+        yield random.uniform(0, 10)
