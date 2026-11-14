@@ -1,4 +1,3 @@
-@'
 #!/usr/bin/node
 
 const size = parseInt(process.argv[2]);
@@ -21,6 +20,3 @@ if (isNaN(size)) {
         i++;
     }
 }
-'@ | Set-Content -Encoding utf8 8-square.js
-
-code 8-square.js
